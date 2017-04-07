@@ -1,21 +1,41 @@
-import {map} from "lodash"
-function start() {
+import {isError,attempt} from "lodash"
+import {Subject} from "rx"
+var subject = new Subject();
+var subscription = subject.subscribe(
+    x => console.log('onNext: ' + x),
+    e => console.log('onError: ' + e.message),
+    () => console.log('onCompleted'));
 
-}
-function run() {
+subject.onNext(1);
+// => onNext: 1
 
-}
-function descript() {
-    
-}
-function pause() {
-    
+subject.onNext(2);
+// => onNext: 2
+
+subject.onCompleted();
+// => onCompleted
+
+class platform {
+    constructor() {
+
+    }
+    start() {
+        const {description} = this;
+        const ret = attempt(description);
+        if (!isError(ret)) {
+            // todo
+        }        
+    }
+    run() {
+
+    }
+    descript(description) {
+        this.description = description;
+    }
+    pause() {
+
+    }
 }
 export function create() {
-    return {
-        run,
-        descript,
-        pause,
-        start
-    }
+    return new platform()
 }

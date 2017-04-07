@@ -19,10 +19,11 @@ describe('engine', function () {
             const platform = create();
             function descript() {
                 console.log(1)
+                return 2
             }
             const descriptSpy = spy(descript);
-            platform.descript(descript);
-            platform.start();
+            platform.descript(descriptSpy);            
+            const runtime = platform.start();            
             it("descriptSpy should be called", function () {
                 expect(descriptSpy.called).to.be.true;
             })
