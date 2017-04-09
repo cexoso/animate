@@ -33,10 +33,11 @@ describe('engine', function () {
             })
         })
     })
-    it("simulation free-faller.fall from 10m hight;", function (done) {
+    it("simulation free-faller fall from 10m hight;", function (done) {
         const platform = create();
         function descript({ handle, time: { during } }) {
             const t = during / 1000;
+            console.log(t)
             const s = max([10 - 0.5 * g * t * t, 0]);
             if (eq(s, 0)) {
                 handle.stop();
@@ -49,7 +50,7 @@ describe('engine', function () {
         const trace = []
         runtime.subscribe(({s,t}) => {
             if (eq(toNumber(s),0)) {
-                expect(t).to.closeTo(1.44,0.01)
+                expect(t).to.closeTo(1.43,0.1)
                 done();
             }
         })

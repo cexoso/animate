@@ -1,7 +1,7 @@
 import { Subject, Observable } from "rx";
 import { partial,eq,map, property, memoize,remove,flowRight } from "lodash"
 function intervalTickCreate(callback) {
-    const handle = setInterval(callback, 20);
+    const handle = setInterval(callback, 5);
     return {
         stop() {
             clearInterval(handle);
